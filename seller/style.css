@@ -1,0 +1,27 @@
+.c-bg-primary{
+    background-color: #070F2B;
+}
+.c-bg-secondary{
+    background-color: #1B1A55;
+}
+.c-bg-third{
+    background-color: #535C91;
+}
+.c-bg-forth{
+    background-color: #9290C3;
+}
+.bg-transparent{
+    background-color: #9290c3;
+}
+.c-text-primary{
+    color: #070F2B;
+}
+.c-text-secondary{
+    color: #1B1A55;
+}
+.c-text-third{
+    color: #535C91;
+}
+.c-text-forth{
+    color: #9290C3;
+}
