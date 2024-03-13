@@ -5,7 +5,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Seller Login - ECSBS</title>
-    <link rel="stylesheet" href="./style.css">
     <?php include_once("top.php");?>
     <style>
     .m-h-100 {

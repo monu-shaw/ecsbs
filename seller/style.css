@@ -1,8 +1,8 @@
 .c-bg-primary{
-    background-color: #070F2B;
+    background-color: #070F2B !important;
 }
 .c-bg-secondary{
-    background-color: #1B1A55;
+    background-color: #1B1A55 !important;
 }
 .c-bg-third{
     background-color: #535C91;
