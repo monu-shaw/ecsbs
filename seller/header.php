@@ -10,10 +10,10 @@
           <a class="nav-link" href="./product.php">Product</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="./product.php">Category</a>
+          <a class="nav-link" href="./category.php">Category</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="./settings.php">Settings</a>
+          <a class="nav-link" href="./setting.php">Settings</a>
         </li>
     </ul>
     </div>
