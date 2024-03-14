@@ -1,90 +1,96 @@
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bootstrap demo</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  </head>
-  <body>
+    <?php include_once("top.php");?>
+</head>
 
-<!-- Navbar -->
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li>
-      </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
-    </div>
-  </div>
-</nav>
+<body style="background-color:#e3eafc">
 
-<!-- Carousel -->
-<div id="carouselExampleCaptions" class="carousel slide">
-  <div class="carousel-indicators">
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-  </div>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img style="max-height:600px" src="https://i.imgur.com/IxDkOi2.jpg" class="d-block w-100" alt="...">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>First slide label</h5>
-        <p>Some representative placeholder content for the first slide.</p>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid col-12 col-md-10 col-lg-8">
+            <a class="navbar-brand" href="#">Store</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+      <div class="col-12 col-md-10 col-lg-8 col-xl-6 mx-auto my-1 p-1 bg-light min-h-100 tr-animate">
+          <div class=" p-1">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic dolor delectus possimus ullam vero odit?</p>
+            <p> tel : 456854854</p>
+            <p> email : 456854854</p>
+          </div>
+          <div class="jumbotron text-center border border-end-0 border-start-0 my-1">
+            <h1 class="display-4">- Our Category - </h1>
+          </div>
+          <section class="splide" aria-label="Splide Basic HTML Example">
+              <div class="splide__track">
+                  <ul class="splide__list">
+                      <?php
+                        // Sample associative array
+                        $items = [
+                            ['name' => 'Logitek Keyboard', 'image' => 'logitek.jpeg'],
+                            ['name' => 'MSI Keyboard', 'image' => 'msi.jpeg'],
+                            ['name' => 'Genius Mouse', 'image' => 'genius.jpeg'],
+                            ['name' => 'Jerry Mouse', 'image' => 'jerry.jpeg']
+                        ];
+  
+                        // Loop through the associative array
+                        foreach ($items as $item) {
+                            // Print each card wrapped in a splide__slide
+                            echo '<div class="splide__slide">';
+                            echo '<div class="card" style="width: 14rem;">';
+                            echo '<img src="https://www.shutterstock.com/image-vector/default-avatar-profile-icon-grey-260nw-769594684.jpg" class="card-img-top" alt="' . $item['name'] . '">';
+                            echo '<div class="card-body">';
+                            echo '<h6 class="card-title">' . $item['name'] . '</h6>';
+                            echo '</div>';
+                            echo '</div>';
+                            echo '</div>';
+                        }
+                        ?>
+                  </ul>
+              </div>
+          </section>
+          <div class="jumbotron text-center border border-end-0 border-start-0 my-1">
+            <h1 class="display-4">- Our Products - </h1>
+          </div>
+          
+
       </div>
-    </div>
-    <div class="carousel-item">
-      <img style="max-height:600px" src="https://i.imgur.com/IxDkOi2.jpg" class="d-block w-100" alt="...">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>Second slide label</h5>
-        <p>Some representative placeholder content for the second slide.</p>
-      </div>
-    </div>
-    <div class="carousel-item">
-      <img style="max-height:600px" src="https://i.imgur.com/IxDkOi2.jpg" class="d-block w-100" alt="...">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>Third slide label</h5>
-        <p>Some representative placeholder content for the third slide.</p>
-      </div>
-    </div>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
 
 
 
+
+    <?php include_once("bottom.php");?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  </body>
+    <script>
+       var splide = new Splide('.splide', {
+            type: 'loop',
+            autoplay: true,
+            pagination: false,
+            autoWidth: true,
+            arrows: false,
+            gap:10
+        });
+        splide.mount();
+    </script>
+</body>
+
 </html>

@@ -95,7 +95,6 @@
                 type: 'POST',
                 url: 'server.php',
                 data: formData,
-                dataType: 'json',
                 encode: true,
                 success: function(response) {
                     // Handle the response from the server

@@ -61,7 +61,7 @@ $(document).ready(function() {
                     type: 'POST',
                     data: f,
                     dataType: 'json',
-                    encode: true,
+                    encode: false,
                     success: function(response) {
                         alert('Category added successfully');
                     },

@@ -1,4 +1,8 @@
 <?php
+ini_set('display_errors', 1);
+error_reporting(-1);
+?>
+<?php
     include_once("db.php");
 ?>
 <?php
@@ -68,6 +72,7 @@ if(isset($_POST["signup"])){
       $errors[] = "Passwords do not match";
     }
 
+
     // Validate password strength (optional)
     // You can use a password library for more complex checks
 
@@ -113,20 +118,30 @@ if(isset($_POST["signup"])){
   );
 
   // Encode the data array to JSON format
-  $validationResult = handleSignupData($data);
-  $jsonData = json_encode($data);
+  try {
+    $db->read_specific("seller", "",["email"=>$data["email"]]);
+    $validationResult = handleSignupData($data);
+    $jsonData = json_encode($data);
+    if (is_array($validationResult)) {
+      // $validationResult contains errors
+      echo res(400,$validationResult);
+    } else {  
+      echo "Data validated and ready for insertion";
+    }
+  }
+  
+  //catch exception
+  catch(Exception $e) {
+    echo 'Message: ' .$e->getMessage();
+  }
+  
 
   // Output the JSON data
   //echo $jsonData;
-  if (is_array($validationResult)) {
-    // $validationResult contains errors
-    echo res(400,$validationResult);
-  } else {  
-    echo "Data validated and ready for insertion";
-  }
+  
 
 }
 
 if(isset($_POST["addcategory"])){
-  echo res(200,$_POST)
+  echo res(200,$_POST);
 }
