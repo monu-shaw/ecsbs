@@ -80,7 +80,6 @@
     $(document).ready(function() {
         $('#myForm').on('submit', function(e) {
             e.preventDefault(); // Prevent the default form submission
-
             var formData = {
                 name: $('#name').val(),
                 sellerId: $('#sellerId').val(),
@@ -89,7 +88,7 @@
                 measuringUnit: $('#measuringUnit').val(),
                 measuringSize: $('#measuringSize').val(),
                 addproduct: "addproduct",
-                image: $('#image')[0].files[0]
+                
             };
 
             $.ajax({
@@ -98,7 +97,6 @@
                 data: formData,
                 dataType: 'json',
                 encode: true,
-                contentType:"multipart/form-data;",
                 success: function(response) {
                     // Handle the response from the server
                     console.log(response);

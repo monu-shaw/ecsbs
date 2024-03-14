@@ -169,6 +169,7 @@
         const currency = "INR"
         const password = document.getElementById('signupPassword').value;
         const confirmPassword = document.getElementById('signupConfirmPassword').value;
+        const signup= "signup"
 
         // Simulate successful signup (replace with actual validation)
         $.ajax({
@@ -183,8 +184,10 @@
                 country: country,
                 currency: currency,
                 password: password,
-                confirmPassword: confirmPassword
+                confirmPassword: confirmPassword,
+                signup
             },  
+            dataType:"json",
             success: function(response) {
                 // Handle the response from the server
                 console.log(response);

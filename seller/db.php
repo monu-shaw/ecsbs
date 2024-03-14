@@ -115,6 +115,29 @@ class dbConn{
 
 
 $db = new dbConn();
+function test_input($data){
+	$data = trim($data);
+	$data = stripslashes($data);
+	$data = htmlspecialchars($data);
+	return $data;
+}
+
+function random_strings($length_of_string = 10){
+ 
+    // String of all alphanumeric character
+    $str_result = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+    return substr(str_shuffle($str_result),0, $length_of_string);
+}
+
+date_default_timezone_set("Asia/Calcutta"); 
+
+session_start();
+
+//$_POST = json_decode(file_get_contents('php://input'), true);
+
+function res($status, $data){
+    return json_encode(['status'=>$status,'data'=>$data]);
+}
 
 
 ?>
