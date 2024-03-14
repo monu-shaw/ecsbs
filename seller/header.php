@@ -1,3 +1,9 @@
+<?php
+session_start();
+if(!isset($_SESSION["login"])){
+    header("Location: index.php");
+}
+?>
 <nav class="navbar navbar-expand-lg  c-bg-secondary navbar-dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Navbar</a>
@@ -14,6 +20,9 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="./setting.php">Settings</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="./logout.php">Log Out</a>
         </li>
     </ul>
     </div>

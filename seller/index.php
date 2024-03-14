@@ -1,3 +1,10 @@
+<?php
+session_start();
+if(isset($_SESSION["login"])){
+    header("Location: home.php");
+}
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -38,17 +45,17 @@
             <div class="align-self-end">
             </div>
         </div>
-        <div class="col-12 col-md-6 col-lg-5 col-xl-4 bg-dark m-h-100">
+        <div class="col-12 col-md-6 col-lg-5 c-bg-secondary col-xl-4 m-h-100">
             <!-- Forms -->
             <div class="container m-1">
                 <div class="row d-flex justify-content-center">
                     <div class="col-12 mx-auto">
-                        <div class="card bg-transparent c-text-third text-light">
-                            <div class="card-header form-toggle">
-                                <h3 class="card-title text-center" id="login-title">Login</h3>
-                                <h3 class="card-title text-center d-none" id="signup-title">Sign Up</h3>
-                            </div>
+                        <div class="card bg-transparent text-light">
                             <div class="card-body">
+                            <div class="form-toggle mb-2">
+                                <h3 class="card-title text-center" id="login-title">Login</h3>
+                                <h3 class="card-title text-center d-none" id="signup-title">Register</h3>
+                            </div>
                                 <form id="userForm">
                                     <div id="login-form">
                                         <div class="mb-3">
@@ -94,11 +101,13 @@
                                                 Password</label>
                                             <input type="password" class="form-control" id="signupConfirmPassword">
                                         </div>
-                                        <button type="button" class="btn btn-primary" id="signupButton">Sign Up</button>
+                                        <div class="mb-3 col-12">
+                                            <button type="button" class="w-100 d-block btn btn-primary" id="signupButton">Sign Up</button>
+                                        </div>
                                     </div>
                                 </form>
                             </div>
-                            <div class="card-footer text-center">
+                            <div class="text-center my-2">
                                 <a href="#" class="link-primary" id="formToggle">New User? Sign Up</a>
                                 <a href="#" class="link-primary d-none" id="formToggleBack">Existing User? Login</a>
                             </div>
@@ -153,9 +162,30 @@
         // Handle login form submission (e.g., send data to backend for validation)
         const email = document.getElementById('loginEmail').value;
         const password = document.getElementById('loginPassword').value;
+        const login= "login"
 
         // Simulate successful login (replace with actual validation)
-        alert(`Login successful for user: ${email}`);
+        $.ajax({
+            type: "POST",
+            url: "./server.php",
+            data: {
+                email: email,
+                password: password,
+                login
+            },  
+            dataType:"json",
+            encode:true,
+            success: function(response) {
+                // Handle the response from the server
+                if(response?.status==200){
+                    postLogin(response?.data)
+                }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                // Handle errors
+                console.error(textStatus, errorThrown);
+            }
+        });
     });
 
     signupButton.addEventListener('click', () => {
@@ -188,9 +218,10 @@
                 signup
             },  
             dataType:"json",
+            encode:true,
             success: function(response) {
                 // Handle the response from the server
-                console.log(response);
+                console.log(JSON.parse(response.data));
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 // Handle errors
@@ -198,20 +229,11 @@
             }
         });
 
-    });
-
-    // (Optional) Populate the country select element with countries (you can use an external API or a static list)
-    fetch('https://api.countrystat.org/v1/countries') // Replace with your country data source
-        .then(response => response.json())
-        .then(data => {
-            const countrySelect = document.getElementById('signupCountry');
-            data.forEach(country => {
-                const option = document.createElement('option');
-                option.value = country.iso3;
-                option.text = country.name;
-                countrySelect.appendChild(option);
-            });
-        });
+    });  
+    const postLogin=(data)=>{
+        localStorage.setItem("user",JSON.stringify(data))
+        location.reload();
+    }  
     </script>
 </body>
 

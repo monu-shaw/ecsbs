@@ -81,6 +81,7 @@ class dbConn{
     }
     public function read_specific($table, $query, $args_val){
     // coloumn Should also provide in this method EX.- g_id =1 ,or  name = 'aman'
+        //ex:- read_specific('user', "email = ?", [$_POST['email']])
         $sql = "SELECT * FROM $table WHERE $query";
         $result = $this->con->prepare($sql);
         $result->execute($args_val);
@@ -115,6 +116,7 @@ class dbConn{
 
 
 $db = new dbConn();
+
 function test_input($data){
 	$data = trim($data);
 	$data = stripslashes($data);
@@ -131,12 +133,13 @@ function random_strings($length_of_string = 10){
 
 date_default_timezone_set("Asia/Calcutta"); 
 
-session_start();
-
 //$_POST = json_decode(file_get_contents('php://input'), true);
 
 function res($status, $data){
     return json_encode(['status'=>$status,'data'=>$data]);
+}
+function slugGen($data){
+    return strtolower(preg_replace('/[^A-Za-z0-9-]+/', '-', $data)).random_strings(4);
 }
 
 

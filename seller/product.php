@@ -33,7 +33,7 @@
                                 <input type="text" class="form-control" id="name" placeholder="Enter Name">
                             </div>
                             <!-- Hidden SellerId Field -->
-                            <input type="hidden" id="sellerId" value="123">
+                            <input type="hidden" id="sellerId" value="<?= $_SESSION["login"]["id"]?>">
                             <!-- CategoryId Select Field -->
                             <div class="form-group">
                                 <label for="categoryId">Category</label>

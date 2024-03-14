@@ -8,6 +8,11 @@
 </head>
 <body>
     <?php include_once("header.php");?>
+    
+    <?php 
+        echo "<pre>";
+        echo $_SESSION["login"]["id"];
+    ?>
 
     <?php include_once("footer.php");?>
     <?php include_once("bottom.php");?>
