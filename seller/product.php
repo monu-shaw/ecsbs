@@ -10,9 +10,11 @@
 
 <body>
     <?php include_once("header.php");?>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Add Product
-    </button>
+    <?php
+        include_once("db.php");
+        $table = $db->read_specific("product","sellerId = ?",[$_SESSION["login"]["id"]]);
+        $category = $db->read_specific("category","sellerId = ?",[$_SESSION["login"]["id"]]);
+        ?>
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -24,7 +26,7 @@
                     <div class="container">
                         <form id="myForm">
                             <div class="form-group">
-                                <label for="formFile" class="form-label">Default file input example</label>
+                                <label for="formFile" class="form-label">Product Image</label>
                                 <input class="form-control" name="image" type="file" id="image">
                             </div>
                             <!-- Name Field -->
@@ -34,14 +36,17 @@
                             </div>
                             <!-- Hidden SellerId Field -->
                             <input type="hidden" id="sellerId" value="<?= $_SESSION["login"]["id"]?>">
+                            <input type="hidden" id="id" value="">
                             <!-- CategoryId Select Field -->
                             <div class="form-group">
                                 <label for="categoryId">Category</label>
                                 <select class="form-control" id="categoryId">
                                     <option>Select Category</option>
-                                    <option value="1">Category 1</option>
-                                    <option value="2">Category 2</option>
-                                    <option value="3">Category 3</option>
+                                    <?php
+                                        foreach ($category as $item) {
+                                                echo '<option value="'.$item["id"].'" >'.$item["name"].'</otion>';
+                                            }
+                                        ?>
                                 </select>
                             </div>
                             <!-- Description Textarea Field -->
@@ -54,7 +59,7 @@
                             <div class="form-group">
                                 <label for="measuringUnit">Measuring Unit</label>
                                 <input type="text" class="form-control" id="measuringUnit"
-                                    placeholder="Enter Measuring Unit">
+                                    placeholder="Enter Measuring Unit" required>
                             </div>
                             <!-- MeasuringSize Field -->
                             <div class="form-group">
@@ -63,50 +68,91 @@
                                     placeholder="Enter Measuring Size">
                             </div>
                             <!-- Submit Button -->
-                            <button type="submit" name="addproduct" class="btn btn-primary">Submit</button>
+                            <button type="submit" name="addproduct" class="my-2 btn btn-primary">Submit</button>
                         </form>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
         </div>
     </div>
+    <div class="container-fluid my-4 <?php if($table != 0) echo "d-none";?>">
+        <h4 class="text-center my-2">No Product Found</h4>
+        <div class="col-8 col-md-3 col-xl-2 mx-auto">            
+            <button type="button"  class="btn btn-primary d-block w-100" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Add New Product
+            </button>
+        </div>
+    </div>
+    <!-- table -->
+    <?php include_once("table.php");?>
+    <?= printTable("Product");?>
+    <!-- table -->
     <?php include_once("footer.php");?>
     <?php include_once("bottom.php");?>
     <script>
-    $(document).ready(function() {
-        $('#myForm').on('submit', function(e) {
-            e.preventDefault(); // Prevent the default form submission
+        let isEditing = false;
+        let products = <?= json_encode($table)?>;
+        
+        function PostDATA(json=null){
             var formData = {
                 name: $('#name').val(),
                 sellerId: $('#sellerId').val(),
                 categoryId: $('#categoryId').val(),
                 description: $('#description').val(),
                 measuringUnit: $('#measuringUnit').val(),
-                measuringSize: $('#measuringSize').val(),
-                addproduct: "addproduct",
-                
+                measuringSize: $('#measuringSize').val() ,
             };
-
+            if(isEditing){
+                formData.id = $('#id').val()
+                formData.editproduct = "editing"
+            }else{
+                formData.image = json?.data?.url
+                formData.addproduct = "addproduct"
+            }
             $.ajax({
                 type: 'POST',
                 url: 'server.php',
                 data: formData,
-                encode: true,
+                datatype:"json",
+                encode: false,
                 success: function(response) {
                     // Handle the response from the server
-                    console.log(response);
+
+                    try {
+                        let jsn = response
+                        if(typeof(response) == 'string'){
+                            jsn = JSON.parse(response);
+                        }
+                        if(jsn?.data == 1){
+                            location.reload();
+                        }
+                    } catch (error) {
+                        console.log(error.message);
+                        alert("Error , Try Again");
+                        location.reload();
+                    }
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
                     // Handle errors
                     console.error(textStatus, errorThrown);
                 }
             });
-        });
-    });
+        }
+
+        function handleEdit(id) {
+            const product = products.find(cat => +cat.id === +id);
+            if (product) {
+                $('#name').val(product?.name)
+                $('#sellerId').val(product?.SellerId)
+                $('#categoryId').val(product?.CategoryId)
+                $('#description').val(product?.Description)
+                $('#measuringUnit').val(product?.MeasuringUnit)
+                $('#measuringSize').val(product?.MeasuringSize)
+                $('#id').val(product?.id)
+                isEditing = true;
+            }
+        }
+    
     </script>
 </body>
 
