@@ -1,9 +1,8 @@
 <!-- Tables -->
 <?php
-function printTable($name){
-    global $table;
+function printTable($name,$table){
     $html = '
-    <div class="m-2 overflow-auto card p-1">
+    <div class="mx-2 overflow-auto card rounded-0 p-1 col-lg-10 col-xl-8 mx-auto">
         <div class="card-header">
             <div class="container-fluid">
                 <div class="d-flex flex-column flex-md-row justify-content-between">
@@ -19,7 +18,7 @@ function printTable($name){
             </div>
         </div>
         <table id="myTable" class="table rounded ';
-         if($table ==0) $html .= "display-none" ;.
+         if($table ==0) $html .= "display-none" ;
         $html .= ' style="width:100%">
             <thead>
                 <tr>
@@ -38,7 +37,8 @@ function printTable($name){
                         $html .= '<td>' . $item['name'] . '</td>';
                         $html .= '<td>
                         <div class="gap-2 row mx-0">
-                        <button type="button" class="col btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="handleEdit('.$item["id"].')"><i class="bi bi-pencil-square"></i></button><button type="button" class="col btn btn-outline-danger" onclick="handleDelete('.$item["id"].')"><i class="bi bi-trash"></i></button>
+                        <button type="button" class="col-5 col-md-3 d-inline btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="handleEdit('.$item["id"].')"><i class="bi bi-pencil-square"></i></button>
+                        <button type="button" class="col-5 col-md-3 btn btn-outline-danger" onclick="handleDelete('.$item["id"].')"><i class="bi bi-trash"></i></button>
                         </div>
                         </td>';
                         $html .= '</tr>';

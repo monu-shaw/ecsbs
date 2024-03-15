@@ -49,11 +49,15 @@
                                         ?>
                                 </select>
                             </div>
-                            <!-- Description Textarea Field -->
+                            <!-- Price -->
                             <div class="form-group">
-                                <label for="description">Description</label>
-                                <textarea class="form-control" id="description" rows="3"
-                                    placeholder="Enter Description"></textarea>
+                                <label for="description">Price</label>
+                                <input type="number" class="form-control" name="price" id="price" required>
+                            </div>
+                            <!-- MRP -->
+                            <div class="form-group">
+                                <label for="description">MRP</label>
+                                <input type="number" class="form-control" name="mrp" id="mrp" required>
                             </div>
                             <!-- MeasuringUnit Size Field -->
                             <div class="form-group">
@@ -66,6 +70,12 @@
                                 <label for="measuringSize">Measuring Size</label>
                                 <input type="number" class="form-control" id="measuringSize"
                                     placeholder="Enter Measuring Size">
+                            </div>
+                            <!-- Description Textarea Field -->
+                            <div class="form-group">
+                                <label for="description">Description</label>
+                                <textarea class="form-control" id="description" rows="3"
+                                    placeholder="Enter Description"></textarea>
                             </div>
                             <!-- Submit Button -->
                             <button type="submit" name="addproduct" class="my-2 btn btn-primary">Submit</button>
@@ -84,8 +94,9 @@
         </div>
     </div>
     <!-- table -->
-    <?php include_once("table.php");?>
-    <?= printTable("Product");?>
+    <?php include_once("./table.php");?>
+    
+    <?php if($table !== 0) echo printTable("Product",$table);?>
     <!-- table -->
     <?php include_once("footer.php");?>
     <?php include_once("bottom.php");?>
@@ -94,9 +105,18 @@
         let products = <?= json_encode($table)?>;
         
         function PostDATA(json=null){
+            if(+$('#price').val() > +$('#mrp').val()){
+                Toastify({
+                    text: "This is a toast",
+                    className:"bg-danger text-light",
+                    duration: 3000
+                }).showToast();
+            }
             var formData = {
                 name: $('#name').val(),
-                sellerId: $('#sellerId').val(),
+                price: $('#price').val(),
+                mrp: $('#mrp').val(),
+                sellerId: +$('#sellerId').val(),
                 categoryId: $('#categoryId').val(),
                 description: $('#description').val(),
                 measuringUnit: $('#measuringUnit').val(),
@@ -143,6 +163,8 @@
             const product = products.find(cat => +cat.id === +id);
             if (product) {
                 $('#name').val(product?.name)
+                $('#price').val(product?.price),
+                $('#mrp').val(product?.mrp),
                 $('#sellerId').val(product?.SellerId)
                 $('#categoryId').val(product?.CategoryId)
                 $('#description').val(product?.Description)

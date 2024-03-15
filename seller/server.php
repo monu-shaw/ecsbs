@@ -15,6 +15,8 @@ if(isset($_POST["addproduct"])){
     $measuringUnit = test_input($_POST['measuringUnit']);
     $measuringSize = test_input($_POST['measuringSize']);
     $image = test_input($_POST['image']);
+    $price = test_input($_POST['price']);
+    $mrp = test_input($_POST['mrp']);
 
     // Generate slug from name
     $slug = slugGen($name);
@@ -25,6 +27,7 @@ if(isset($_POST["addproduct"])){
         echo res(400,["Name is required."]);
         exit;
     }
+
     
     $data = [
         'name' => $name,
@@ -34,7 +37,9 @@ if(isset($_POST["addproduct"])){
         'measuringUnit' => $measuringUnit,
         'measuringSize' => $measuringSize,
         'slug' => $slug,
-        'image'=> $image
+        'image'=> $image,
+        'price'=> $price,
+        'mrp'=> $mrp
     ];
     $r = $db->create("product",$data);
     echo res(200,$r);
@@ -49,7 +54,8 @@ if(isset($_POST["editproduct"])){
     $measuringUnit = test_input($_POST['measuringUnit']);
     $measuringSize = test_input($_POST['measuringSize']);
     $id = test_input($_POST['id']);
-
+    $price = test_input($_POST['price']);
+    $mrp = test_input($_POST['mrp']);
     
     $res = $db->read_specific("product", "id = ?",[$id]);
 

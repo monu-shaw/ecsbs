@@ -43,8 +43,8 @@
         </div>
     </div>
     <!-- table -->
-    <?php include_once("table.php");?>
-    <?= printTable("Category");?>
+    <?php include_once("./table.php");?>
+    <?php if($table !== 0) echo printTable("Category",$table);?>
     <!-- table -->
     <?php include_once("footer.php");?>
     <?php include_once("bottom.php");?>
