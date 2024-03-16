@@ -1,6 +1,7 @@
 <?php
  ini_set('display_errors', 1);
- error_reporting(-1);
+ ini_set('display_startup_errors', 1);
+ error_reporting(E_ALL);
 
 
   include_once("db.php");
@@ -262,7 +263,7 @@ if(isset($_POST["editcategory"])){
       if($r==1){
         echo res(200,$r);
       }else{
-        res(400,["Error Occured"]);
+        echo res(400,["Error Occured"]);
       }
     } catch (PDOException $th) {
       echo res(400, [$th->getMessage()]);
@@ -271,3 +272,34 @@ if(isset($_POST["editcategory"])){
     echo res(400,["Category Exist"]);
   }
 }
+
+if(isset($_POST["del"])){
+  
+    $id = test_input($_POST['id']);
+    $type = test_input($_POST['type']);
+    
+    if($type=="category"){
+      $eixst = $db->read_specific("category", "id = ? ",[$id]);
+      if($eixst != 0){
+          $res = $db->delete("category",[$id]);
+            echo res(200, $res);
+      }else{
+        echo res(400,["item not exist"]);
+      }
+    }else{
+      $eixst = $db->read_specific("product", "id = ? ",[$id]);
+      if($eixst != 0){
+          $res = $db->delete("product",[$id]);
+            echo res(200, $res);
+      }else{
+        echo res(400,["item not exist"]);
+      }
+    } 
+
+}
+
+else{
+  echo res(404,["not found"]);
+}
+
+?>

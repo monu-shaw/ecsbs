@@ -101,8 +101,19 @@ class dbConn{
             return 0;
         }
     }
-    public function delete(){
-
+    public function delete($table, $id){
+        try {
+            $stmt = $this->con->prepare("DELETE FROM $table WHERE id = ? LIMIT 1");
+            $stmt->execute($id);
+            if ($stmt->rowCount() > 0) {
+                return 1; // Success
+            } else {
+                return 0; 
+            }
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+            return 0; 
+        }
     }
 
     public function __destruct(){

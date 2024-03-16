@@ -27,38 +27,7 @@
         </div>
     <?php }else{ ?>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid col-12 col-md-10 col-lg-8 col-xl-6">
-            <a class="navbar-brand ft-bold" href="#"><?= $store[0]["businessName"] ?></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
-                </ul>                
-                <button class="btn btn-outline-success mx-md-1 my-1 my-md-0" type="button">
-                    <i class="bi bi-cart"></i>
-                </button>
-                <div class="dropdown-center">
-                    <button class="btn btn-outline-success dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        <i class="bi bi-search"></i>
-                    </button>
-                    <div class="dropdown-menu" id="dropdownMenuButton" aria-labelledby="dropdownMenuButton">
-                        <form class="px-4 py-2">
-                            <input type="search" class="form-control" placeholder="Search.." id="myInput" onkeyup="filterFunction()" />
-                        </form>
-                        <a class="dropdown-item" href="#">Item 1</a>
-                        <a class="dropdown-item" href="#">Item 2</a>
-                        <a class="dropdown-item" href="#">Item 3</a>
-                    </div>
-                </div>          
-            </div>
-        </div>
-    </nav>
+    <?php include_once("header.php");?>
 
     <div class="col-12 col-md-10 col-lg-8 col-xl-6 mx-auto my-1 p-1 bg-light min-vh-100 tr-animate">
         <div class="jumbotron text-center border border-end-0 border-start-0 my-1">
@@ -76,7 +45,7 @@
                             // Print each card wrapped in a splide__slide
                             echo '<div class="splide__slide">';
                             echo '<div class="card" style="width: 14rem;">';
-                            echo '<img src="'.$item["Image"].'" class="card-img-top" alt="' . $item['name'] . '">';
+                            echo '<img src="'.$item["Image"].'" class="card-img-top img-fit" alt="' . $item['name'] . '">';
                             echo '<div class="card-body">';
                             echo '<h6 class="card-title">' . $item['name'] . '</h6>';
                             echo '</div>';
@@ -101,12 +70,11 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-6">
-                                    <img src="<?=$product["Image"]?>"
-                                        class="img-fluid" alt="<?php echo $product['name']; ?>">
+                                    <img src="<?=$product["Image"]?>" class="img-fit" alt="<?php echo $product['name']; ?>">
                                 </div>
                                 <div class="col-6">
-                                    <h5 class="card-title"><?php echo $product['name']; ?></h5>
-                                    <p class="card-text"><?php echo $product['Description']; ?></p>
+                                    <a href="../product/<?= $product["slug"]."/".$_GET["store"]?>"><h5 class="card-title text-truncate"><?php echo $product['name']; ?></h5></a>
+                                    <p class="card-text text-truncate"><?php echo $product['Description']; ?></p>
                                     <p class="card-text"><small
                                             class="text-muted">₹ <?php echo $product['price']; ?></small></p>
                                     <button type="button" class="btn btn-primary">Add to Cart</button>

@@ -23,7 +23,7 @@ if(!isset($_SESSION["login"])){
         </li>        
       </ul>
       <button class="btn btn-outline-success mx-0 mx-md-1 my-1 my-md-0">
-        <a class="nav-link" href="../<?= $_SESSION["login"]["slug"]?>" target="_blank">Visit Store</a>
+        <a class="nav-link" href="../<?= "home/".$_SESSION["login"]["slug"]?>" target="_blank">Visit Store</a>
       </button>
       <button class="btn btn-outline-warning">
         <a class="nav-link" href="./logout.php">Log Out</a>

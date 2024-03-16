@@ -64,22 +64,42 @@
     background-color: #070F2B;
     border-color: #070F2B;
    }
+   .tr-animate{
+    transition: all 0.2s ease-in;
+}
 
-   .poppins-regular {
+.dropdown-menu {
+    width: 230px;
+    max-height: 200px;
+    overflow-y: auto;
+  }
+  
+  .form-control {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .ft-regular {
     font-family: "Poppins", sans-serif;
     font-weight: 400;
     font-style: normal;
   }
   
-  .poppins-medium {
+  .ft-medium {
     font-family: "Poppins", sans-serif;
     font-weight: 500;
     font-style: normal;
   }
   
-  .poppins-bold {
+  .ft-bold {
     font-family: "Poppins", sans-serif;
     font-weight: 700;
     font-style: normal;
   }
-  
+
+  .img-fit {
+    aspect-ratio: 1;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+   }

@@ -38,7 +38,7 @@ function printTable($name,$table){
                         $html .= '<td>
                         <div class="gap-2 row mx-0">
                         <button type="button" class="col-5 col-md-3 d-inline btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="handleEdit('.$item["id"].')"><i class="bi bi-pencil-square"></i></button>
-                        <button type="button" class="col-5 col-md-3 btn btn-outline-danger" onclick="handleDelete('.$item["id"].')"><i class="bi bi-trash"></i></button>
+                        <button type="button" class="col-5 col-md-3 btn btn-outline-danger" onclick="deleteItem('.$item["id"].',`'.$name.'`)"><i class="bi bi-trash"></i></button>
                         </div>
                         </td>';
                         $html .= '</tr>';

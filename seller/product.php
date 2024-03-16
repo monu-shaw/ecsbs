@@ -118,7 +118,7 @@
                 mrp: $('#mrp').val(),
                 sellerId: +$('#sellerId').val(),
                 categoryId: $('#categoryId').val(),
-                description: $('#description').val(),
+                description: $('#description').val().replace(/\n/g, "<br>"),
                 measuringUnit: $('#measuringUnit').val(),
                 measuringSize: $('#measuringSize').val() ,
             };

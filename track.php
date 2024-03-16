@@ -31,29 +31,43 @@
     <div class="col-12 col-md-10 col-lg-8 col-xl-6 mx-auto my-1 p-1 bg-light min-vh-100 tr-animate">
         <!-- <Checkout UI -->
         <div class="container mt-5">
+            <div class="">
+                <div class="mb-3">
+                  <label for="exampleFormControlInput1" class="form-label">Order ID</label>
+                  <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                </div>
+            </div>
             <div class="d-flex flex-wrap">
-                <div class="col-12 col-md-6 p-1 order-1">
-                    <div class="border rounded p-1 p-2">
-                        <h2>My Cart (1 Item)</h2>
-                        <div class="card mb-3">
+                <div class="col-12 col-md-8 p-1 pe-3 ">
+                    <div class="">
+                        <h2> Item</h2>
+                        <div class=" mb-3">
                             <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <img src="image-of-product.jpg" alt="Single USB Travel Charger"
-                                            class="img-fluid">
-                                    </div>
-                                    <div class="col-md-8">
-                                        <h5 class="card-title">SINGLE USB TRAVEL CHARGER</h5>
-                                        <p class="card-text">Premier Dual USB Charger 18W Fast</p>
-                                        <p class="card-text">1.5Amp.</p>
-                                    </div>
-                                </div>
+                            <table class="table table-striped">
+                                <tbody>
+                                    <tr>
+                                        <td colspan="2">Name</td>
+                                        <td>1</td>
+                                        <td>₹1</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">Name</td>
+                                        <td>1</td>
+                                        <td>₹1</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">Name</td>
+                                        <td>1</td>
+                                        <td>₹1</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-md-6 p-1 order-3 order-md-2">
-                    <div class="border rounded p-1 p-2">
+                <div class="col-12 col-md-4 p-1">
+                    <div class="">
                         <h2>Order Summary</h2>
                         <table class="table table-striped">
                             <tbody>
@@ -71,15 +85,11 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <p class="text-muted">Total Savings ₹150</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <button type="button" class="btn btn-primary d-block w-100">Next</button>
-                        </div>
                     </div>
                 </div>
-                <div class="col-12 col-md-6 p-1 order-2 order-md-3">
-                    <div class="border rounded p-1 p-2">
-                        <h2>Shipping Address</h2>
+                <div class="col-12 col-md-6 p-1 ">
+                    <div class="">
+                        <h2>Customer Detail</h2>
                         <form>
                             <div class="row">
                                 <div class="col-md-6 mb-3">
