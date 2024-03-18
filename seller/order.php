@@ -87,20 +87,20 @@
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label for="firstName" class="form-label">Name</label>
-                                    <input type="text" class="form-control" id="name" placeholder="" disabled value="<?= $order[0]["customerName"]?>">
+                                    <input type="text" class="form-control" id="name" placeholder="" disabled value="<?= $orders[0]["customerName"]?>">
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="lastName" class="form-label">Phone</label>
-                                    <input type="text" class="form-control" id="phone" placeholder="" disabled value="<?= $order[0]["customerPhone"]?>">
+                                    <input type="text" class="form-control" id="phone" placeholder="" disabled value="<?= $orders[0]["customerPhone"]?>">
                                 </div>
                             </div>
                             <div class="mb-3">
                                 <label for="address" class="form-label">Address</label>
-                                <input type="text" class="form-control" id="address" placeholder="123 Main St" disabled value="<?= $order[0]["customerAddress"]?>">
+                                <input type="text" class="form-control" id="address" placeholder="123 Main St" disabled value="<?= $orders[0]["customerAddress"]?>">
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="zip" class="form-label">Zip Code</label>
-                                <input type="text" class="form-control" type="number" id="zip" maxlength="5" disabled value="<?= $order[0]["customerPincode"]?>">
+                                <input type="text" class="form-control" type="number" id="zip" maxlength="5" disabled value="<?= $orders[0]["customerPincode"]?>">
                             </div>
                     </div>
                 </div>

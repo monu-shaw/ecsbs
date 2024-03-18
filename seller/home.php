@@ -33,27 +33,19 @@
                     <!-- Example row -->
                     <?php foreach ($orders as $order) {
                         echo '
+                        <tr>
                         <td>'.$order["date"].'</td>
                         <td>₹'.$order["amount"].'</td>
                         <td>'.$order["status"].'</td>
                         <td>'.$order["customerName"].'</td>
                         <td>
-                            <a href="order.php?id=" class="btn btn-primary btn-sm">
-                                <i class="bi bi-eye"></i>
-                            </a>
-                        </td>';
-                    }?>
-                    <tr>
-                        <td>2024-03-18</td>
-                        <td>$100</td>
-                        <td>Pending</td>
-                        <td>John Doe</td>
-                        <td>
-                            <a href="order.php?id=" class="btn btn-primary btn-sm">
+                            <a href="order.php?order='.$order["orderId"].'" class="btn btn-primary btn-sm">
                                 <i class="bi bi-eye"></i>
                             </a>
                         </td>
-                    </tr>
+                        </tr>
+                        ';
+                    }?>
                     <!-- Add more rows as needed -->
                 </tbody>
             </table>
