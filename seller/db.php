@@ -36,8 +36,8 @@ class dbConn{
             
           } catch(PDOException $e) {
             
-            return "Error: " . $e->getMessage();
-            //return 0;
+            echo "Error: " . $e->getMessage();
+            return 0;
           }
     }
     public function createGetId($table, $args = array()){
@@ -152,6 +152,8 @@ function res($status, $data){
 function slugGen($data){
     return strtolower(preg_replace('/[^A-Za-z0-9-]+/', '-', $data)).random_strings(4);
 }
+
+$base = "/ecsbs/";
 
 
 ?>

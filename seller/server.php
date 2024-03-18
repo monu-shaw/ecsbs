@@ -46,7 +46,7 @@ if(isset($_POST["addproduct"])){
     echo res(200,$r);
     return;
 }
-if(isset($_POST["editproduct"])){
+elseif(isset($_POST["editproduct"])){
     // Sanitize and validate input
     $name = test_input($_POST['name']);
     $sellerId = test_input($_POST['sellerId']);
@@ -77,7 +77,7 @@ if(isset($_POST["editproduct"])){
 }
 
 
-if(isset($_POST["signup"])){
+elseif(isset($_POST["signup"])){
   function handleSignupData($data) {
     $errors = [];
   
@@ -171,7 +171,7 @@ if(isset($_POST["signup"])){
 
 }
 
-if(isset($_POST["login"])){
+elseif(isset($_POST["login"])){
   function handleSignupData($data) {
     $errors = [];
   
@@ -230,7 +230,7 @@ if(isset($_POST["login"])){
 
 }
 
-if(isset($_POST["addcategory"])){
+elseif (isset($_POST["addcategory"])){
   $name = test_input($_POST['name']);
   $sellerId = test_input($_POST['sellerId']);
   $image = test_input($_POST['image']);
@@ -250,7 +250,7 @@ if(isset($_POST["addcategory"])){
   }
 }
 
-if(isset($_POST["editcategory"])){
+elseif(isset($_POST["editcategory"])){
   $name = test_input($_POST['name']);
   $sellerId = test_input($_POST['sellerId']);
   $categoryId = test_input($_POST['categoryId']);
@@ -273,7 +273,7 @@ if(isset($_POST["editcategory"])){
   }
 }
 
-if(isset($_POST["del"])){
+elseif(isset($_POST["del"])){
   
     $id = test_input($_POST['id']);
     $type = test_input($_POST['type']);

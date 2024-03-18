@@ -11,32 +11,50 @@
     <?php 
     include_once("./seller/db.php");
     $store = $db->read("seller WHERE slug = '".$_GET["store"]."'");
-    $category = $db->read_specific("category","sellerId = ?",[$store[0]["id"]]);
-    $products = $db->read_specific("product","SellerId = ?",[$store[0]["id"]]);
-    if($store ===0){
+    $order = $db->read_specific("ordertable","orderId = ?",[$_GET["order"]]);
+    $items = $db->read_specific("orderItem","orderId = ?",[$_GET["order"]]);
+    $products = [];
+    $total = 0;
+    foreach ($items as  $item) {
+        $t = $db->read_single("product",$item["productId"]);
+        $t["quantity"] = $item["quantity"];
+        array_push($products,$t);
+    }
+    if($store ===0 || !$items){
         ?>
     <div class="d-flex min-vh-100 justify-content-center align-items-center">
         <div class="card ft-regular" style="width: 24rem;">
             <div class="card-body text-center">
-                <h4 class="card-title ft-bold">No Store</h4>
-                <p class="card-text">Creat your E-Commerce store Here</p>
-                <a href="seller/index.php" class="btn btn-success">Create</a>
+                <h4 class="card-title ft-bold">404 Page</h4>
+                <p class="card-text">No order Found</p>
+                <div id="viewOrder" class="row">
+                    <div class="mb-3 col-md-10">
+                    <input type="text" class="form-control" id="orderId" placeholder="order Id">
+                    </div>
+                    <div class="mb-3 col-md-2">
+                        <button onclick="search()" class="btn btn-primary"> <i class="bi bi-search"></i></button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
     <?php }else{ ?>
     <!-- Navbar -->
     <?php include_once("header.php");?>
-
     <div class="col-12 col-md-10 col-lg-8 col-xl-6 mx-auto my-1 p-1 bg-light min-vh-100 tr-animate">
         <!-- <Checkout UI -->
         <div class="container mt-5">
             <div class="">
-                <div class="mb-3">
-                  <label for="exampleFormControlInput1" class="form-label">Order ID</label>
-                  <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                <div id="viewOrder" class="row col-md-10 col-lg-8">
+                    <div class="mb-3 col-10">
+                        <input type="text" class="form-control" id="orderId" value="<?= $order[0]["orderId"] ?>">
+                    </div>
+                    <div class="mb-3 col-2">
+                        <button onclick="search()" class="btn btn-primary"> <i class="bi bi-search"></i></button>
+                    </div>
                 </div>
             </div>
+            <hr>
             <div class="d-flex flex-wrap">
                 <div class="col-12 col-md-8 p-1 pe-3 ">
                     <div class="">
@@ -45,20 +63,18 @@
                             <div class="card-body">
                             <table class="table table-striped">
                                 <tbody>
+                                <?php foreach ($products as $product){
+                                        $total += $product["price"]*$product["quantity"];
+                                        ?>
                                     <tr>
-                                        <td colspan="2">Name</td>
-                                        <td>1</td>
-                                        <td>₹1</td>
+                                        <td colspan="2"><?= $product["name"]?></td>
+                                        <td><?= $product["quantity"]?></td>
+                                        <td>₹ <?=$product["quantity"]*$product["price"]?></td>
                                     </tr>
-                                    <tr>
-                                        <td colspan="2">Name</td>
-                                        <td>1</td>
-                                        <td>₹1</td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2">Name</td>
-                                        <td>1</td>
-                                        <td>₹1</td>
+                                <?php }?>
+                                    <tr class="border border-2 secondary">
+                                        <td colspan="3">Order Status</td>
+                                        <td><?= $order[0]["status"]?></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -72,16 +88,8 @@
                         <table class="table table-striped">
                             <tbody>
                                 <tr>
-                                    <td>Cart</td>
-                                    <td>₹149</td>
-                                </tr>
-                                <tr>
-                                    <td>Delivery</td>
-                                    <td>₹19</td>
-                                </tr>
-                                <tr>
                                     <td>Total</td>
-                                    <td>₹168</td>
+                                    <td>₹ <?= $total ?></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -90,26 +98,24 @@
                 <div class="col-12 col-md-6 p-1 ">
                     <div class="">
                         <h2>Customer Detail</h2>
-                        <form>
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label for="firstName" class="form-label">Name</label>
-                                    <input type="text" class="form-control" id="name" placeholder="" required>
+                                    <input type="text" class="form-control" id="name" placeholder="" disabled value="<?= $order[0]["customerName"]?>">
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="lastName" class="form-label">Phone</label>
-                                    <input type="text" class="form-control" id="phone" placeholder="" required>
+                                    <input type="text" class="form-control" id="phone" placeholder="" disabled value="<?= $order[0]["customerPhone"]?>">
                                 </div>
                             </div>
                             <div class="mb-3">
                                 <label for="address" class="form-label">Address</label>
-                                <input type="text" class="form-control" id="address" placeholder="123 Main St" required>
+                                <input type="text" class="form-control" id="address" placeholder="123 Main St" disabled value="<?= $order[0]["customerAddress"]?>">
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="zip" class="form-label">Zip Code</label>
-                                <input type="text" class="form-control" type="number" id="zip" maxlength="5" required>
+                                <input type="text" class="form-control" type="number" id="zip" maxlength="5" disabled value="<?= $order[0]["customerPincode"]?>">
                             </div>
-                        </form>
                     </div>
                 </div>
             </div>
@@ -130,15 +136,7 @@
 
     <?php include_once("bottom.php");?>
     <script>
-    var splide = new Splide('.splide', {
-        type: 'loop',
-        autoplay: true,
-        pagination: false,
-        autoWidth: true,
-        arrows: false,
-        gap: 10
-    });
-    splide.mount();
+    
 
     function filterFunction() {
         var input, filter, a, i;
@@ -155,6 +153,12 @@
             }
         }
     }
+    function search(){
+        let orderid = $('#orderId').val();
+        location.href = `<?= $base.'track/'.$store[0]["slug"].'/' ?>`+orderid;
+    }
+    $(document).ready(function() {
+    })
     </script>
 </body>
 

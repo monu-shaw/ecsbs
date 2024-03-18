@@ -44,7 +44,7 @@
                 </div>       
                 <div class="d-flex flex-column justify-content-between mt-4">
                 <h3 class="text-danger">₹ <?= $product[0]["price"]?></h3>
-                <button type="button" class="btn btn-primary">Buy Now</button>
+                <a href="<?=$base?>addtocart/<?= $product[0]["id"]?>/<?=$store[0]["slug"]?>"><button type="button" class="btn btn-primary">Buy Now</button></a>
                 </div>
             </div>
             <div class="col-md-8 mx-auto my-4" style="min-height: 100px;">

@@ -73,11 +73,11 @@
                                     <img src="<?=$product["Image"]?>" class="img-fit" alt="<?php echo $product['name']; ?>">
                                 </div>
                                 <div class="col-6">
-                                    <a href="../product/<?= $product["slug"]."/".$_GET["store"]?>"><h5 class="card-title text-truncate"><?php echo $product['name']; ?></h5></a>
+                                    <a href="<?=$base?>product/<?= $product["slug"]."/".$_GET["store"]?>"><h5 class="card-title text-truncate"><?php echo $product['name']; ?></h5></a>
                                     <p class="card-text text-truncate"><?php echo $product['Description']; ?></p>
                                     <p class="card-text"><small
                                             class="text-muted">₹ <?php echo $product['price']; ?></small></p>
-                                    <button type="button" class="btn btn-primary">Add to Cart</button>
+                                    <a href="<?=$base?>addtocart/<?= $product["id"]?>/<?=$store[0]["slug"]?>"><button type="button" class="btn btn-primary">Add to Cart</button></a>
                                 </div>
                             </div>
                         </div>
