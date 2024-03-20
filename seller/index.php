@@ -24,50 +24,32 @@ if(isset($_SESSION["login"])){
     </style>
 </head>
 
-<body>
+<body class="form-bg">
     <div class="row mx-0">
-        <div
-            class="d-none col-md-6 col-lg-7 col-xl-8 c-bg-primary min-vh-100 d-md-flex flex-column justify-content-between c-text-forth">
-            <div class="align-self-start">
-                <h1>ECSBS</h1>
-            </div>
-            <div class="">
-                <div class="splide" role="group" aria-label="Splide Basic HTML Example">
-                    <div class="splide__track">
-                        <ul class="splide__list">
-                            <li class="splide__slide">Slide 01</li>
-                            <li class="splide__slide">Slide 02</li>
-                            <li class="splide__slide">Slide 03</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="align-self-end">
-            </div>
-        </div>
-        <div class="col-12 col-md-6 col-lg-5 c-bg-secondary col-xl-4 m-h-100">
+        <div class="col-12 col-md-6 col-lg-5 col-xl-4 m-h-100 mx-auto tr-animate">
             <!-- Forms -->
             <div class="container m-1">
                 <div class="row d-flex justify-content-center">
                     <div class="col-12 mx-auto">
-                        <div class="card bg-transparent text-light">
-                            <div class="card-body">
-                            <div class="form-toggle mb-2">
-                                <h3 class="card-title text-center" id="login-title">Login</h3>
-                                <h3 class="card-title text-center d-none" id="signup-title">Register</h3>
+                        <div class="card shadow-lg tr-animate">
+                            <div class="card-body c-text-forth">
+                                <h3 class="text-center fw-semibold c-text-primary">ECSBS</h3>
+                            <div class="form-toggle mb-2 mb-3">
+                                <h5 class="card-title text-center" id="login-title">Login</h5>
+                                <h5 class="card-title text-center d-none" id="signup-title">Register</h5>
                             </div>
                                 <form id="userForm">
                                     <div id="login-form">
                                         <div class="mb-3">
                                             <label for="loginEmail" class="form-label">Email address</label>
                                             <input type="email" class="form-control" id="loginEmail"
-                                                aria-describedby="emailHelp">
+                                                aria-describedby="emailHelp" required>
                                         </div>
                                         <div class="mb-3">
                                             <label for="loginPassword" class="form-label">Password</label>
-                                            <input type="password" class="form-control" id="loginPassword">
+                                            <input type="password" class="form-control" id="loginPassword" required>
                                         </div>
-                                        <button type="button" class="btn btn-primary" id="loginButton">Login</button>
+                                        <button type="button" class="btn btn-primary w-100" id="loginButton">Login</button>
                                     </div>
                                     <div id="signup-form" class="d-none row mx-0">
                                         <div class="mb-3 col-12 col-md-6">
@@ -83,33 +65,41 @@ if(isset($_SESSION["login"])){
                                             <label for="signupSellerName" class="form-label">Seller Name</label>
                                             <input type="text" class="form-control" id="signupSellerName">
                                         </div>
-                                        <div class="mb-3 col-12">
+                                        <div class="mb-3 col-12 col-md-6">
                                             <label for="signupBusinessName" class="form-label">Business Name</label>
                                             <input type="text" class="form-control" id="signupBusinessName">
                                         </div>
-                                        <div class="mb-3 col-12">
-                                            <label for="signupBusinessAddress" class="form-label">Business
-                                                Address</label>
-                                            <textarea class="form-control" id="signupBusinessAddress"></textarea>
+                                        <div class="mb-3 col-12 col-md-6">
+                                            <label for="signupBusinessName" class="form-label">Delivery Charge</label>
+                                            <input type="text" class="form-control" id="deliveryCharge">
                                         </div>
                                         <div class="mb-3 col-12">
+                                            <label for="signupBusinessAddress" class="form-label">Business Address</label>
+                                            <textarea class="form-control" id="signupBusinessAddress"></textarea>
+                                        </div>
+                                        <div class="mb-3 col-12 col-md-6">
                                             <label for="signupPassword" class="form-label">Password</label>
                                             <input type="password" class="form-control" id="signupPassword">
                                         </div>
-                                        <div class="mb-3 col-12">
+                                        <div class="mb-3 col-12 col-md-6">
                                             <label for="signupConfirmPassword" class="form-label">Confirm
                                                 Password</label>
                                             <input type="password" class="form-control" id="signupConfirmPassword">
                                         </div>
                                         <div class="mb-3 col-12">
-                                            <button type="button" class="w-100 d-block btn btn-primary" id="signupButton">Sign Up</button>
+                                            <button type="button" class="w-100 d-block btn btn-primary" id="signupButton">Register</button>
                                         </div>
                                     </div>
                                 </form>
                             </div>
                             <div class="text-center my-2">
-                                <a href="#" class="link-primary" id="formToggle">New User? Sign Up</a>
-                                <a href="#" class="link-primary d-none" id="formToggleBack">Existing User? Login</a>
+                                <a href="#" class="link-primary text-decoration-none" id="formToggle">New User? Sign Up</a>
+                                <a href="#" class="link-primary text-decoration-none d-none" id="formToggleBack">Existing User? Login</a>
+                            </div>
+                            <div class="card-footer">
+                                <p class="text-center p-0 m-0">
+                                    ECSBS Ecommerce Store Building System - Developed by <span class="fw-semibold">Monu kr. Shaw</span>  for in partial fulfillment for the Award of the degree <span class="fw-bold">BCA</span> , 2024.
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -176,10 +166,29 @@ if(isset($_SESSION["login"])){
             dataType:"json",
             encode:true,
             success: function(response) {
-                // Handle the response from the server
-                if(response?.status==200){
-                    postLogin(response?.data)
-                }
+                try {
+                        let jsn = response
+                        if(typeof(response) == 'string'){
+                            jsn = JSON.parse(response);
+                        }
+                        if(jsn?.status == 200){
+                            postLogin(response?.data)
+                        }else{
+                            if(response?.status==400){
+                                response.data.forEach(element => {
+                                    Toastify({
+                                        text: element,
+                                        className:"bg-danger text-light",
+                                        duration: 3000
+                                    }).showToast();
+                                });
+                            }
+                        }
+                    } catch (error) {
+                        console.log(error.message);
+                        alert("Error , Try Again");
+                        location.reload();
+                    }
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 // Handle errors
@@ -200,6 +209,7 @@ if(isset($_SESSION["login"])){
         const password = document.getElementById('signupPassword').value;
         const confirmPassword = document.getElementById('signupConfirmPassword').value;
         const signup= "signup"
+        const deliveryCharge =document.getElementById("deliveryCharge").value;
 
         // Simulate successful signup (replace with actual validation)
         $.ajax({
@@ -215,13 +225,36 @@ if(isset($_SESSION["login"])){
                 currency: currency,
                 password: password,
                 confirmPassword: confirmPassword,
-                signup
+                signup,
+                deliveryCharge
             },  
             dataType:"json",
             encode:true,
             success: function(response) {
                 // Handle the response from the server
-                console.log(JSON.parse(response.data));
+                try {
+                        let jsn = response
+                        if(typeof(response) == 'string'){
+                            jsn = JSON.parse(response);
+                        }
+                        if(jsn?.data == 1){
+                            location.reload();
+                        }else{
+                            if(response?.status==400){
+                                response.data.forEach(element => {
+                                    Toastify({
+                                        text: element,
+                                        className:"bg-danger text-light",
+                                        duration: 3000
+                                    }).showToast();
+                                });
+                            }
+                        }
+                    } catch (error) {
+                        console.log(error.message);
+                        alert("Error , Try Again");
+                        location.reload();
+                    }
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 // Handle errors

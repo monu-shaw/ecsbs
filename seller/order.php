@@ -24,8 +24,11 @@
         }
         
     ?>
-    <div class="col-12 col-md-10 col-lg-8 mx-auto border">
-        <div class="container mt-5">
+    <div class="col-12 col-md-10 col-lg-8 mx-auto min-vh-100">
+        <div class="card">
+            <div class="card-header">
+                <h3>Order Details</h3>
+            </div>
             <div class="d-flex flex-wrap">
                 <div class="col-12 col-md-10 p-2 d-flex">
                 <form action="server.php" method="post">
@@ -74,8 +77,16 @@
                         <table class="table table-striped">
                             <tbody>
                                 <tr>
+                                    <td>Cart</td>
+                                    <td>₹ <?= $total?></td>
+                                </tr>
+                                <tr>
+                                    <td>Delivery</td>
+                                    <td>₹ <?= $_SESSION["login"]["deliveryCharge"]?></td>
+                                </tr>
+                                <tr>
                                     <td>Total</td>
-                                    <td>₹<?=$total?></td>
+                                    <td>₹ <?= $total+$_SESSION["login"]["deliveryCharge"]?></td>
                                 </tr>
                             </tbody>
                         </table>

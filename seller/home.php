@@ -14,47 +14,46 @@
         $orders = $db->read_specific("ordertable","sellerId = ?",[$_SESSION["login"]["id"]]);
         
     ?>
-    <div class="col-12 col-md-10 col-lg-8 mx-auto card">
-        <div class="card-header">
-            <h2>Orders</h2>
-        </div>
-        <div class="card-body">
-            <table id="myTable" class="table">
-                <thead>
-                    <tr>
-                        <th>Order Date</th>
-                        <th>Value</th>
-                        <th>Status</th>
-                        <th>Customer Name</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Example row -->
-                    <?php foreach ($orders as $order) {
-                        echo '
+    <div class=" col-lg-10 col-xl-8 mx-auto min-vh-100">
+        <div class="card">
+            <div class="card-header">
+                <h2>Orders</h2>
+            </div>
+            <div class="card-body  overflow-auto">
+                <table id="myTable" class="table">
+                    <thead>
                         <tr>
-                        <td>'.$order["date"].'</td>
-                        <td>₹'.$order["amount"].'</td>
-                        <td>'.$order["status"].'</td>
-                        <td>'.$order["customerName"].'</td>
-                        <td>
-                            <a href="order.php?order='.$order["orderId"].'" class="btn btn-primary btn-sm">
-                                <i class="bi bi-eye"></i>
-                            </a>
-                        </td>
+                            <th>Order Date</th>
+                            <th>Value</th>
+                            <th>Status</th>
+                            <th>Customer Name</th>
+                            <th>Action</th>
                         </tr>
-                        ';
-                    }?>
-                    <!-- Add more rows as needed -->
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        <!-- Example row -->
+                        <?php foreach ($orders as $order) {
+                            echo '
+                            <tr>
+                            <td>'.$order["date"].'</td>
+                            <td>₹'.$order["amount"].'</td>
+                            <td>'.$order["status"].'</td>
+                            <td>'.$order["customerName"].'</td>
+                            <td>
+                                <a href="order.php?order='.$order["orderId"].'" class="btn btn-primary btn-sm">
+                                    <i class="bi bi-eye"></i>
+                                </a>
+                            </td>
+                            </tr>
+                            ';
+                        }?>
+                        <!-- Add more rows as needed -->
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-    <?php 
-        echo "<pre>";
-        echo $_SESSION["login"]["id"];
-    ?>
+    
     <?php include_once("footer.php");?>
     <?php include_once("bottom.php");?>
 </body>

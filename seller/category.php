@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Seller Category - ECSBS</title>
-    <?php include_once("top.php");?>
-    
+    <?php include_once("top.php");?>    
 </head>
 <body>
     <?php include_once("header.php");?>
@@ -14,6 +13,14 @@
         include_once("db.php");
         $table = $db->read_specific("category","sellerId = ?",[$_SESSION["login"]["id"]]);
     ?>
+    <div class="container-fluid my-4 <?php if($table != 0) echo "d-none";?>">
+        <h4 class="text-center my-2">No Category Found</h4>
+        <div class="col-8 col-md-3 col-xl-2 mx-auto">            
+            <button type="button"  class="btn btn-primary d-block w-100" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Add New Category
+            </button>
+        </div>
+    </div>
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">

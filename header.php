@@ -1,3 +1,6 @@
+<?php
+    $pts = $db->read_specific("product","SellerId = ?",[$store[0]["id"]]);
+?>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid col-12 col-md-10 col-lg-8 col-xl-6">
             <a class="navbar-brand ft-bold" href="<?=$base?>home/<?=$store[0]["slug"]?>"><?= $store[0]["businessName"] ?></a>
@@ -22,9 +25,9 @@
                         <form class="px-4 py-2">
                             <input type="search" class="form-control" placeholder="Search.." id="myInput" onkeyup="filterFunction()" />
                         </form>
-                        <a class="dropdown-item" href="#">Item 1</a>
-                        <a class="dropdown-item" href="#">Item 2</a>
-                        <a class="dropdown-item" href="#">Item 3</a>
+                        <?php foreach ($pts as $pt): ?>
+                            <a class="dropdown-item text-capitalize text-truncate" href="<?=$base?>product/<?= $pt["slug"]."/".$_GET["store"]?>"><?php echo $pt['name']; ?></a>
+                        <?php endforeach; ?>
                     </div>
                 </div>          
             </div>

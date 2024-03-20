@@ -21,7 +21,7 @@
                 <div class="card-body text-center">
                     <h4 class="card-title ft-bold">No Store</h4>
                     <p class="card-text">Creat your E-Commerce store Here</p>
-                    <a href="seller/index.php" class="btn btn-success">Create</a>
+                    <a href="<?=$base?>seller/index.php" class="btn btn-success">Create</a>
                 </div>
             </div>
         </div>
@@ -73,7 +73,7 @@
                                     <img src="<?=$product["Image"]?>" class="img-fit" alt="<?php echo $product['name']; ?>">
                                 </div>
                                 <div class="col-6">
-                                    <a href="<?=$base?>product/<?= $product["slug"]."/".$_GET["store"]?>"><h5 class="card-title text-truncate"><?php echo $product['name']; ?></h5></a>
+                                    <a class="text-decoration-none text-capitalize" href="<?=$base?>product/<?= $product["slug"]."/".$_GET["store"]?>"><h5 class="card-title text-truncate"><?php echo $product['name']; ?></h5></a>
                                     <p class="card-text text-truncate"><?php echo $product['Description']; ?></p>
                                     <p class="card-text"><small
                                             class="text-muted">₹ <?php echo $product['price']; ?></small></p>

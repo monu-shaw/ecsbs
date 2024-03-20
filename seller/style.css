@@ -14,7 +14,7 @@
     background-color: #9290c3;
 }
 .c-text-primary{
-    color: #070F2B;
+    color: #070F2B !important;
 }
 .c-text-secondary{
     color: #1B1A55;
@@ -23,9 +23,12 @@
     color: #535C91;
 }
 .c-text-forth{
-    color: #9290C3;
+    color: #9290C3 !important;
 }
-
+.form-bg{
+    background: rgb(83,92,145);
+background: linear-gradient(90deg, rgba(83,92,145,0.9920343137254902) 0%, rgba(83,92,145,1) 35%, rgba(146,144,195,1) 100%);
+}
 .c-btn {
     display: inline-block;
     font-weight: 400;
@@ -103,3 +106,10 @@
     height: auto;
     object-fit: contain;
    }
+
+   .tr-animate{
+    transition: all 0.2s ease-in;
+}
+   body{
+    font-family: "Poppins", sans-serif;
+}

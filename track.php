@@ -88,8 +88,16 @@
                         <table class="table table-striped">
                             <tbody>
                                 <tr>
+                                    <td>Cart</td>
+                                    <td>₹ <?= $total?></td>
+                                </tr>
+                                <tr>
+                                    <td>Delivery</td>
+                                    <td>₹ <?= $store[0]["deliveryCharge"]?></td>
+                                </tr>
+                                <tr>
                                     <td>Total</td>
-                                    <td>₹ <?= $total ?></td>
+                                    <td>₹ <?= $total+$store[0]["deliveryCharge"]?></td>
                                 </tr>
                             </tbody>
                         </table>

@@ -124,6 +124,7 @@ elseif(isset($_POST["signup"])){
       'currency' => $data['currency'],
       'slug'=> slugGen($data["businessName"]),
       'password' => password_hash($data['password'], PASSWORD_DEFAULT), // Hash password before storing
+      'deliveryCharge'=> $data["deliveryCharge"]
     ];
   }
 
@@ -149,7 +150,8 @@ elseif(isset($_POST["signup"])){
       'country' => $country,
       'currency' => $currency,
       'password' => $password,
-      'confirmPassword' => $confirmPassword
+      'confirmPassword' => $confirmPassword,
+      'deliveryCharge' => test_input($_POST["deliveryCharge"])
   ];
 
   // Encode the data array to JSON format

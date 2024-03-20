@@ -102,7 +102,15 @@
     <?php include_once("bottom.php");?>
     <script>
         let isEditing = false;
-        let products = <?= json_encode($table)?>;
+        <?php
+            $products=[];
+            foreach ($table as $value) {
+                $value["Description"] = htmlspecialchars_decode($value["Description"]);
+                array_push($products, $value);
+            }
+
+        ?>
+        let products = <?= json_encode($products)?>;
         
         function PostDATA(json=null){
             if(+$('#price').val() > +$('#mrp').val()){
@@ -162,12 +170,13 @@
         function handleEdit(id) {
             const product = products.find(cat => +cat.id === +id);
             if (product) {
+                console.log($.parseHTML(product?.Description));
                 $('#name').val(product?.name)
                 $('#price').val(product?.price),
                 $('#mrp').val(product?.mrp),
                 $('#sellerId').val(product?.SellerId)
                 $('#categoryId').val(product?.CategoryId)
-                $('#description').val(product?.Description)
+                $('#description').val($.parseHTML(product?.Description).reduce((a,b)=>a+=b.textContent,"").replaceAll("<br>",`\n`))
                 $('#measuringUnit').val(product?.MeasuringUnit)
                 $('#measuringSize').val(product?.MeasuringSize)
                 $('#id').val(product?.id)

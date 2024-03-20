@@ -1,9 +1,9 @@
 <?php
 class dbConn{
-    private $host = "localhost";
-    private $username = "root";
-    private $password = "";
-    private $dbName = "ecsbs";
+    private $host = "sql208.epizy.com";
+    private $username = "epiz_25373149";
+    private $password = "UuCEpaWc4CP1BeB";
+    private $dbName = "epiz_25373149_ecsbs";
  /*    private $host = "sql208.epizy.com";
     private $username = "epiz_25373149";
     private $password = "UuCEpaWc4CP1BeB";
@@ -153,7 +153,7 @@ function slugGen($data){
     return strtolower(preg_replace('/[^A-Za-z0-9-]+/', '-', $data)).random_strings(4);
 }
 
-$base = "/ecsbs/";
+$base = "/";
 
 
 ?>

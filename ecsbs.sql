@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 18, 2024 at 01:28 PM
+-- Generation Time: Mar 19, 2024 at 11:53 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -70,7 +70,11 @@ INSERT INTO `orderItem` (`orderId`, `productId`, `quantity`, `date`) VALUES
 ('xZBpd', 1, 1, '2024-03-18 16:15:22'),
 ('xZBpd', 12, 1, '2024-03-18 16:15:22'),
 ('m9h1W', 11, 1, '2024-03-18 17:56:12'),
-('m9h1W', 12, 1, '2024-03-18 17:56:12');
+('m9h1W', 12, 1, '2024-03-18 17:56:12'),
+('1m9KY', 12, 1, '2024-03-19 11:51:19'),
+('UCMRp', 12, 1, '2024-03-19 11:51:37'),
+('38JbW', 12, 1, '2024-03-19 11:51:48'),
+('L1WDs', 10, 1, '2024-03-19 11:52:02');
 
 -- --------------------------------------------------------
 
@@ -103,7 +107,11 @@ INSERT INTO `ordertable` (`id`, `amount`, `customerName`, `customerPhone`, `cust
 (5, 100, 'ammn', '1425369857', 'pdkhkfg dnmlfg', 700060, '2024-03-18 15:50:31', 1, 'pending', 'aq9IS'),
 (6, 100, 'ammn', '7896584221', 'pdkhkfg dnmlfg', 700060, '2024-03-18 15:55:05', 1, 'pending', 'PSU1V'),
 (7, 100, 'raju', '7896584221', 'pdkhkfg dnmlfg', 700060, '2024-03-18 16:15:22', 1, 'pending', 'xZBpd'),
-(8, 100, 'ammn', '7896584221', 'pdkhkfg dnmlfg', 700060, '2024-03-18 17:56:12', 1, 'pending', 'm9h1W');
+(8, 100, 'ammn', '7896584221', 'pdkhkfg dnmlfg', 700060, '2024-03-18 17:56:12', 1, 'pending', 'm9h1W'),
+(9, 100, 'ammn', '7896584221', 'pdkhkfg dnmlfg', 700060, '2024-03-19 11:51:19', 1, 'pending', '1m9KY'),
+(10, 100, 'Maryam Avila', '+1 (172) 586-4734', 'Facilis odio optio', 95082, '2024-03-19 11:51:37', 1, 'pending', 'UCMRp'),
+(11, 100, 'Reuben Calderon', '+1 (894) 516-2924', 'Aliqua Enim esse i', 39651, '2024-03-19 11:51:48', 1, 'pending', '38JbW'),
+(12, 0, 'Cedric Pennington', '+1 (396) 955-1842', 'Aut tempor et minim', 70108, '2024-03-19 11:52:02', 1, 'pending', 'L1WDs');
 
 -- --------------------------------------------------------
 
@@ -137,7 +145,8 @@ INSERT INTO `product` (`id`, `name`, `price`, `mrp`, `MeasuringSize`, `Measuring
 (9, 'monu', 0, 0, '1', 'dsadsd', 'https://i.ibb.co/2vn2vfj/It-s-Not-A-Bug-It-s-A-Feature-Half-Sleeve-Bottle-Green-scaled-1-112169.jpg', 'jjj', 3, 1, 'monutglx'),
 (10, 'monu', 0, 0, '1', 'sadasd', 'https://i.ibb.co/XbmDsMS/Screenshot-from-2024-03-14-17-38-24.png', 'sdcsa', 1, 1, 'monumS3a'),
 (11, 'test212', 0, 0, '1', 'ds', 'https://i.ibb.co/6sdRj8H/39084181.png', 'zdds', 1, 1, 'test7u8B'),
-(12, 'INSHOET sayak', 100, 500, '1', 'pc', 'https://i.ibb.co/xLXcnZs/banner6-1.jpg', 'fjsekfjsklfsd&amp;lt;br&amp;gt;fjsdfjkkdsf&amp;lt;br&amp;gt;jmsdlkfjlksdf&amp;lt;br&amp;gt;sdnfjsdjkfsd&amp;lt;br&amp;gt;jsdlkfjsdkf', 4, 1, 'inshoet-test17Lg');
+(12, 'INSHOET sayak', 100, 500, '1', 'pc', 'https://i.ibb.co/xLXcnZs/banner6-1.jpg', 'New Test &lt;br&gt;new line', 4, 1, 'inshoet-test17Lg'),
+(13, 'New Tes tProduct', 100, 50, '1', 'pc', 'https://i.ibb.co/KjP9VSL/It-s-Not-A-Bug-It-s-A-Feature-Half-Sleeve-Bottle-Green-scaled-1-112169.jpg', 'Some New Sample', 3, 1, 'new-tes-tproductt6IQ');
 
 -- --------------------------------------------------------
 
@@ -156,6 +165,7 @@ CREATE TABLE `seller` (
   `phone` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL,
   `slug` varchar(100) NOT NULL,
+  `deliveryCharge` int(11) NOT NULL,
   `createdOn` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -163,8 +173,8 @@ CREATE TABLE `seller` (
 -- Dumping data for table `seller`
 --
 
-INSERT INTO `seller` (`id`, `sellerName`, `businessName`, `businessAddress`, `country`, `currency`, `email`, `phone`, `password`, `slug`, `createdOn`) VALUES
-(1, 'Kirk Kirby', 'Kirby Long', 'Dolor est cumque dol', 'INDIA', 'INR', 'wepapeqik@mailinator.com', '17691699765', '$2y$10$FRkszbULAA363Fvu/4tzcu6qWS48Oi5bDxg7hbWwcwTVIXFTNwFS2', 'kirby-long1Whf', '2024-03-15 13:34:50');
+INSERT INTO `seller` (`id`, `sellerName`, `businessName`, `businessAddress`, `country`, `currency`, `email`, `phone`, `password`, `slug`, `deliveryCharge`, `createdOn`) VALUES
+(1, 'Kirk Kirby', 'Kirby Long', 'Dolor est cumque dol', 'INDIA', 'INR', 'wepapeqik@mailinator.com', '17691699765', '$2y$10$FRkszbULAA363Fvu/4tzcu6qWS48Oi5bDxg7hbWwcwTVIXFTNwFS2', 'kirby-long1Whf', 19, '2024-03-15 13:34:50');
 
 --
 -- Indexes for dumped tables
@@ -209,13 +219,13 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `ordertable`
 --
 ALTER TABLE `ordertable`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `seller`
