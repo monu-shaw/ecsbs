@@ -46,7 +46,7 @@
                             <option value="cancelled">Cancelled</option>
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-primary">Update Status</button>
+                    <name type="submit" name="updateOrder" class="btn btn-primary" value="Update Status">
                 </form> 
                 </div>
                 <div class="col-12 col-md-8 p-1 pe-3 ">

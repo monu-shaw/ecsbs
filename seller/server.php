@@ -300,6 +300,28 @@ elseif(isset($_POST["del"])){
 
 }
 
+elseif(isset($_POST["updateOrder"])){
+  $id = test_input($_POST['orderId']);
+  $status = test_input($_POST['status']);
+
+  $res = $db->read_specific("category", "id = ? ",[$id]);
+
+  if($res!=0){
+    try {
+      $r = $db->update("ordertable","status = '".$status."'","id = '".$id."'");
+      if($r==1){
+        echo res(200,$r);
+      }else{
+        echo res(400,["Error Occured"]);
+      }
+    } catch (PDOException $th) {
+      echo res(400, [$th->getMessage()]);
+    }
+  }else{
+    echo res(400,["Category Exist"]);
+  }
+}
+
 else{
   echo res(404,["not found"]);
 }
