@@ -1,13 +1,9 @@
 <?php
 class dbConn{
-    private $host = "sql208.epizy.com";
-    private $username = "epiz_25373149";
-    private $password = "UuCEpaWc4CP1BeB";
-    private $dbName = "epiz_25373149_ecsbs";
- /*    private $host = "sql208.epizy.com";
-    private $username = "epiz_25373149";
-    private $password = "UuCEpaWc4CP1BeB";
-    private $dbName = "epiz_25373149_gpstore"; */
+    private $host = "";
+    private $username = "";
+    private $password = "";
+    private $dbName = "";
 
     private $con_status = false ;
     public $con = '';
